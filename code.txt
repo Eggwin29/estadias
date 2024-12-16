@@ -1,0 +1,51 @@
+# Funcion para imprimir la tabla
+def print_table(data, headers, file_name):
+    if data:
+        print(f"\nDatos del archivo {file_name}:")
+        print(tabulate(data, headers=headers, tablefmt='fancy_grid', colalign=("center",) * len(headers)))
+    else:
+         print(f"\nNo hay datos en {file_name}.")
+
+# Cargar y mostrar datos de cada archivo
+coois_data = [
+    [cell.value for cell in row]
+    for row in coois_sheet.iter_rows(min_row=2, max_row=coois_sheet.max_row, max_col=coois_sheet.max_column)
+]
+# print_table(coois_data, coois_headers, "coois.xlsx")
+
+pct_data = [
+    [cell.value for cell in row]
+    for row in pct_sheet.iter_rows(min_row=2, max_row=pct_sheet.max_row, max_col=pct_sheet.max_column)
+]
+# print_table(pct_data, pct_headers, "pct.xlsx")
+
+ship_status_data = [
+    [cell.value for cell in row]
+    for row in ship_status_sheet.iter_rows(min_row=2, max_row=ship_status_sheet.max_row, max_col=ship_status_sheet.max_column)
+]
+# print_table(ship_status_data, ship_status_headers, "Ship Status.xlsx")
+
+wo_process_data = [
+    [cell.value for cell in row]
+    for row in wo_process_sheet.iter_rows(min_row=2, max_row=wo_process_sheet.max_row, max_col=wo_process_sheet.max_column)
+]
+# print_table(wo_process_data, wo_process_headers, "WO PROCESS.xlsx")
+
+master_data = [
+    [cell.value for cell in row]
+    for row in master_sheet.iter_rows(min_row=2, max_row=master_sheet.max_row, max_col=master_sheet.max_column)
+]
+
+
+
+
+
+def seleccionar_archivo(label): 
+    archivo = filedialog.askopenfilename(title="Seleccionar Archivo")
+    if archivo:
+        nombre_archivo = archivo.split("/")[-1]  # Extraer solo el nombre del archivo
+        # file =  open(archivo, "r")
+#        
+         
+        label.config(text=nombre_archivo, foreground="green")
+        return archivo
